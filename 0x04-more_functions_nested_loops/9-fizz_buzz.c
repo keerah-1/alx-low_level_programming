@@ -1,34 +1,39 @@
 #include <stdio.h>
 /**
  * main - Entry point
- *
- * Return: Always 0 (Success)
- */
+ * Prints the numbers 1 t0 100, followed by a new line
+ * But for multiples of three print, Fizz
+ * For multiples pf 5 print, Buzz
+ * If both print, FizzBuzz
+ * Return: Always 0 if (success)
+*/
+
 int main(void)
 {
-	int m;
+	int i;
 
-	for (m = 1 ; m < 100 ; m++)
+	i = 1;
+	printf("%d", i);
+
+	for (i = 2; i <= 100; i++)
 	{
-		if ((m % 3) == 0 && (m % 5) == 0)
+		if (i % 3 == 0 && i % 5 == 0)
 		{
-			printf("FizzBuzz ");
+			printf(" FizzBuzz");
 		}
-		else if (m % 3 == 0)
+		else if (i % 3 == 0)
 		{
-			printf("Fizz ");
+			printf(" Fizz");
 		}
-		else if (m % 5 == 0)
+		else if (i % 5 == 0)
 		{
-			printf("Buzz ");
+			printf(" Buzz");
 		}
 		else
 		{
-		printf("%d ", m);
+			printf(" %d", i);
 		}
 	}
-	printf("Buzz");
-	printf("\n");
+	putchar('\n');
 	return (0);
 }
-© 2022 GitHub
