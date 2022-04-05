@@ -73,4 +73,4 @@ char **strtow(char *str)
 	if (strings == NULL)
 		return (NULL);
 
-
+}
