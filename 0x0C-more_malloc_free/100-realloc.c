@@ -1,56 +1,48 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /**
- * simple_print_buffer - prints buffer in hexa
+ * _realloc - reallocate a memory block using malloc and free
  *
- * @buffer: the address of memory to print
- * @size: the size of the memory to print
+ * @ptr: pointer to previous memory
+ * @old_size: old memory array size
+ * @new_size: new memory array size
  *
- * Return: Nothing.
+ * Return: pointer to new memory
+ *         NULL if it fails
 */
-void simple_print_buffer(char *buffer, unsigned int size)
+
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
+	char *new_ptr, *temp_ptr;
 	unsigned int i;
 
-	i = 0;
-	while (i < size)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (ptr == NULL)
 	{
-		if (i % 10)
-		{
-			printf(" ");
-		}
-		if (!(i % 10) && i)
-		{
-			printf("\n");
-		}
-		printf("0x%02x", buffer[i]);
-		i++;
+		new_ptr = malloc(new_size);
+		if (new_ptr == NULL)
+			return (NULL);
+		free(ptr);
+		return (new_ptr);
 	}
-	printf("\n");
-}
 
-/**
- * main - check the code for ALX School students.
- *
- * Return: Always 0.
- */
-
-int main(void)
-{
-	char *p;
-	int i;
-
-	p = malloc(sizeof(char) * 10);
-	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 98);
-	i = 0;
-	while (i < 98)
+	if (new_size == 0 && ptr != NULL)
 	{
-		p[i++] = 98;
+		free(ptr);
+		return (NULL);
 	}
-	simple_print_buffer(p, 98);
-	free(p);
-	return (0);
+
+	new_ptr = malloc(new_size);
+	if (new_ptr == NULL)
+		return (NULL);
+
+	temp_ptr = ptr;
+
+	for (i = 0; i < old_size; i++)
+		new_ptr[i] = temp_ptr[i];
+
+	free(ptr);
+	return (new_ptr);
 }
