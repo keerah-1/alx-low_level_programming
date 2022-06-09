@@ -1,23 +1,18 @@
 #include "lists.h"
-#include <stdio.h>
-
 /**
- * dlistint_len - find number of nodes of doubly linked list
- * @h: linked list
- *
- * Return: number of nodes
+ * dlistint_len - return the length of a doubly linked list
+ * @h: the doubly linked list
+ * Return: the length of the lists
  */
-
 size_t dlistint_len(const dlistint_t *h)
 {
-	size_t nbr_nodes = 0;
-	const dlistint_t *current = h;
+	const dlistint_t *actual = h;
+	size_t len = 0;
 
-	while (current != NULL)
+	while (actual)
 	{
-		current = current->next;
-		nbr_nodes++;
+		actual = actual->next;
+		len++;
 	}
-
-	return (nbr_nodes);
+	return (len);
 }
